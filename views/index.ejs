@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CRUD App</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<h1>User Management</h1>
+<form action="/add" method="POST">
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="number" name="age" placeholder="Age" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <button type="submit">Add User</button>
+</form>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Actions</th>
+    </tr>
+    <% users.forEach(user => { %>
+        <tr>
+            <td><%= user.name %></td>
+            <td><%= user.age %></td>
+            <td><%= user.email %></td>
+            <td>
+                <form action="/update/<%= user._id %>" method="POST">
+                    <input type="text" name="name" placeholder="New Name">
+                    <button type="submit">Edit</button>
+                </form>
+                <form action="/delete/<%= user._id %>" method="POST">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    <% }); %>
+</table>
+</body>
+</html>
